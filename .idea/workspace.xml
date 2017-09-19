@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5d1b3cb2-6d85-41da-a5c0-30def799be42" name="Default" comment="zadnie 1/1.5">
+    <list default="true" id="5d1b3cb2-6d85-41da-a5c0-30def799be42" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/js/project.js" afterPath="$PROJECT_DIR$/template/js/project.js" />
     </list>
@@ -30,8 +30,8 @@
       <file leaf-file-name="project.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/template/js/project.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+            <state relative-caret-position="255">
+              <caret line="17" column="21" lean-forward="false" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -152,7 +152,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1505808701879</updated>
-      <workItem from="1505808703348" duration="4755000" />
+      <workItem from="1505808703348" duration="6682000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1505808803194</created>
@@ -168,11 +168,18 @@
       <option name="project" value="LOCAL" />
       <updated>1505812218866</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Constructor function-car">
+      <created>1505816520648</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1505816520648</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4755000" />
+    <option name="totallyTimeSpent" value="6682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="866" height="800" extended-state="0" />
@@ -205,7 +212,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="zadnie 1/1.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="zadnie 1/1.5" />
+    <MESSAGE value="Constructor function-car" />
+    <option name="LAST_COMMIT_MESSAGE" value="Constructor function-car" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -230,8 +238,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/js/project.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        <state relative-caret-position="255">
+          <caret line="17" column="21" lean-forward="false" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
           <folding />
         </state>
       </provider>
