@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car object literal</title>
+</head>
+<body>
+
+    <script>
+        /**
+         * 1. Please create car plain object
+         * 2. Please add necessary properties for car with default values (at least 5)
+         * 3. Add method to calculate price with different vat
+         * 4. Add property to store calculated price for given vat to avoid unnecessary operations
+         * 5. Try to invoke calculate price with different context using .apply() and .call() methods
+         * 6. Add property `attributes` with nested properties: color, weight, doors
+         * 7. Try to read/update properties from `attributes`
+         * 8. Please modify calculatePrice method outside the product code
+         */
+
+        var car = {
+            producer: 'VW',
+            model: 'Tiguan',
+            price: 12000,
+            maxSpeed: 220,
+            attributes: {
+                color: 'khaki',
+                weight: 2000,
+                doors: 5
+            },
+            prices: {},
+            calculatePrice: calculatePrice
+        };
+
+        var carCitroen = {
+            price: 9000,
+            prices: {}
+        };
+
+        car.calculatePrice(23);
+        car.calculatePrice(9);
+        car.calculatePrice(7);
+
+        function calculatePrice(vat) {
+            var vatKey = 'vat_' + vat;
+
+            if (typeof this.prices[vatKey] === 'undefined') {
+                this.prices[vatKey] = this.price * (1 + (vat / 100));
+            }
+
+            return this.prices[vatKey];
+        }
+
+        car.calculatePrice.apply(carCitroen, [23]);
+        car.calculatePrice.call(carCitroen, 9);
+
+    </script>
+</body>
+</html>

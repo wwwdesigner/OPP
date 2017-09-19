@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car object literal Encapsulation</title>
+</head>
+<body>
+
+    <script>
+        /**
+         * Cars:
+         *  |----+--------+-------+--------+-------+----------|
+         *  | id | make   | price | model  | color | maxSpeed |
+         *  |----+--------+-------+--------+-------+----------|
+         *  |  1 | VW     | 2590  | Passat |   red |      150 |
+         *  |  2 | Nissan | 2390  | 300ZX  |  blue |      180 |
+         *  |  3 | Mazda  | 4000  | Miata  |  grey |      260 |
+         *  |  4 | Honda  | 2280  | Civic  | white |      200 |
+         *  |  5 | BMW    | 5890  | e90    | black |      220 |
+         *  |----+--------+-------+--------+-------+----------|
+         *
+         * 1. Please copy your code from previous exercise
+         * 2. Please create object for data in above table
+         * 3. Please encapsulate data to protect manipulation from outside
+         */
+
+        var carVW    = makeCar(1, 'VW',     'Passat', 2590, 'red',   150);
+        var carNissan = makeCar(2, 'Nissan', '300ZS',  1190, 'blue',  180);
+        var carMazda  = makeCar(3, 'Mazda',  'Miata',  4000, 'grey',  260);
+        var carHonda  = makeCar(4, 'Honda',  'Civic',  2280, 'white', 200);
+        var carBMW    = makeCar(5, 'BMW',    'e90',    5890, 'black', 220);
+
+        function makeCar(id, make, model, price, color, maxSpeed) {
+            var _price = price;
+            var _passengers = 0;
+            var _weight = 0;
+            var _prices = {};
+
+            return {
+                id: id,
+                make: make,
+                calculatePrice: calculatePrice,
+                maxPassengers: 4,
+                get passengers() {
+                    return _passengers;
+                },
+                set passengers(value) {
+                    _passengers = value;
+                }
+            };
+
+            function calculatePrice(vat) {
+                var vatKey = 'vat_' + vat;
+
+                if (typeof _prices[vatKey] === 'undefined') {
+                    _prices[vatKey] = _price * (1 + (vat / 100));
+                }
+
+                return _prices[vatKey];
+            }
+        }
+
+        carBMW.calculatePrice(21); // 7126.9
+        carBMW.calculatePrice(7); // 6302.3
+
+        carVW.calculatePrice(23); // 3185.7
+        carVW.calculatePrice(3); // 2667.7
+    </script>
+</body>
+</html>

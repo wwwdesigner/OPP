@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Constructor functions</title>
+</head>
+<body>
+
+    <script>
+        /**
+         * Cars:
+         *  |----+--------+-------+--------+-------+----------|
+         *  | id | make   | price | model  | color | maxSpeed |
+         *  |----+--------+-------+--------+-------+----------|
+         *  |  1 | VW     | 2590  | Passat |   red |      150 |
+         *  |  2 | Nissan | 2390  | 300ZX  |  blue |      180 |
+         *  |  3 | Mazda  | 4000  | Miata  |  grey |      260 |
+         *  |  4 | Honda  | 2280  | Civic  | white |      200 |
+         *  |  5 | BMW    | 5890  | e90    | black |      220 |
+         *  |----+--------+-------+--------+-------+----------|
+         *
+         * 1. Please copy your code from previous exercise
+         * 2. Please create above cars with your constructor function
+         * 3. Please add method isFasterThan(car) - remember to ensure that car is Car
+         */
+
+        var Car = function Car(id, make, model, price, color, maxSpeed) {
+            var _price = price;
+            var _id = id;
+            var _make = make;
+            var _model = model;
+            var lastCalculatedPrice;
+
+            this.color = color;
+            this.maxSpeed = maxSpeed;
+
+            this.calculatePrice = function(vat) {
+                var totalPrice = _price * (1 + (vat / 100));
+
+                updateLastCalculatedPrice(totalPrice);
+
+                return totalPrice;
+            };
+
+            this.getPrice = function() { return _price };
+            this.getId = function() { return _id };
+            this.getMake = function() { return _make };
+            this.getModel = function() { return _model };
+            this.getLastCalculatedPrice = function () { return lastCalculatedPrice };
+
+            function updateLastCalculatedPrice(totalPrice) {
+                lastCalculatedPrice = totalPrice;
+            }
+
+            this.isFasterThan = function (car) {
+                if (!(car instanceof Car)) {
+                    console.error("Given object is not a car ...");
+                    return;
+                }
+
+                return this.maxSpeed > car.maxSpeed;
+            }
+        };
+
+        var carVW     = new Car(1, 'VW',     'Passat', 2590, 'red',   150);
+        var carNissan = new Car(2, 'Nissan', '300ZX',  2390, 'blue',  180);
+        var carMazda  = new Car(3, 'Mazda',  'Miata',  4000, 'grey',  260);
+        var carHonda  = new Car(4, 'Honda',  'Civic',  2280, 'white', 200);
+        var carBMW   = new Car(5, 'BMW',    'e90',    5890, 'black', 220);
+
+        carVW.isFasterThan(carBMW); // false
+        carBMW.isFasterThan(carVW); // true
+
+        carBMW.isFasterThan([]); // ERROR: Given object is not a car ...
+    </script>
+</body>
+</html>

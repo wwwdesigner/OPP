@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object Literal property manipulation</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name: "John",
+            surname: "Doe",
+            getFullName: function() {
+                return this.name + ' ' + this.surname;
+            }
+        };
+
+        const doctor = Object.create(person);
+        const journalist = Object.create(person);
+        const surgeon = Object.create(doctor);
+        const remodelingSurgeon = Object.create(surgeon);
+        remodelingSurgeon.getFullName = function() {
+            return "Unknown"
+        };
+        const petSurgeon = Object.create(surgeon);
+
+        surgeon.name = "Dana";
+        remodelingSurgeon.name = "Scully";
+        Object.getPrototypeOf(doctor).surname = "Fox";
+        Object.getPrototypeOf(journalist).surname = "Parker";
+        Object.getPrototypeOf(Object.getPrototypeOf(petSurgeon)).surname = "Hide";
+
+        // Try to guess results
+        console.log('person', person.getFullName());
+        console.log('doctor', doctor.getFullName());
+        console.log('journalist', journalist.getFullName());
+        console.log('surgeon', surgeon.getFullName());
+        console.log('remodelingSurgeon', remodelingSurgeon.getFullName());
+        console.log('petSurgeon', petSurgeon.getFullName());
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function prototyping - example</title>
+</head>
+<body>
+    <script>
+
+        function Person(name, surname) {
+            this.health = 100;
+            this.name = name;
+            this.surname = surname;
+
+            this.wrongMethod = function() {
+                console.error("wrong");
+            }
+        }
+
+        Person.prototype.getFullName = function() {
+            return this.name + ' ' + this.surname;
+        };
+
+        Person.prototype.increaseHealth = function(energy) {
+            this.health += energy;
+        };
+
+        Person.prototype.sayHello = function() {
+            console.info('Greetings from ' + this.name);
+        };
+
+        function Doctor(name, surname) {
+            Person.call(this, name, surname);
+            this.hospital = 'Main';
+        }
+
+        Doctor.prototype = Object.create(Person.prototype);
+        Doctor.prototype.constructor = Doctor;
+        Doctor.prototype.cure = function(person) {
+            if (person instanceof Person === false) {
+                throw new Error("Can't cure!");
+            }
+
+            person.increaseHealth(10);
+        };
+        Doctor.prototype.increaseHealth = function(energy) {
+            Object.getPrototypeOf(this).increaseHealth(energy * 2);
+        };
+
+        function Surgeon(name, surname) {
+            this.from = "Gdańsk";
+            Doctor.call(this, name, surname);
+        }
+
+        Surgeon.prototype = Object.create(Doctor.prototype);
+        Surgeon.prototype.constructor = Surgeon;
+
+        Surgeon.prototype.canHelp = function(person) {
+            if (person instanceof Surgeon) {
+                throw new Error("Can't help Surgeon");
+            }
+
+            return true;
+        };
+
+        // --
+        var p = new Person("Jan", "Kowalski");
+        var d = new Doctor("Dr.", "Quuen");
+        var s1 = new Surgeon("John", "Doe");
+        var s2 = new Surgeon("Piotr", "Nowak");
+    </script>
+</body>
+</html>

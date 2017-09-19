@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop Cart based on object literals</title>
+</head>
+<body>
+    <script>
+        /**
+         *  Products:
+         *  |----+------------+-------+--------+--------|
+         *  | id | name       | price | type   | weight |
+         *  |----+------------+-------+--------+--------|
+         *  |  1 | Watermelon | 25.90 | fruit  |   4500 |
+         *  |  2 | Cheese     | 23.90 | dairy  |   1000 |
+         *  |  3 | Bread      |  4.00 | bakery |    500 |
+         *  |  4 | fish       | 22.80 | fish   |   1000 |
+         *  |  5 | coffee     | 18.90 | coffee |    200 |
+         *  |----+------------+-------+--------+--------|
+         *
+         *  1. Please prepare product objects based on provided data
+         *  2. Please create Shopping Cart object
+         *  3. Please add to you shopping cart:
+         *     - 1500g of Watermelon
+         *     - 200g of cheese
+         *     - 2 bread
+         *     - 600g of fish
+         *     - 2 coffees
+         *  4. You have only 80 PLN, can you buy all above things?
+         *
+         *  EXTRA:
+         *  5. If not, please remove something
+         *  6. Please implement method buy(amount) to your shopping cart.
+         *     This method should return array of Paper Bags with products inside.
+         *     One paper bag can contain 2500g of products.
+         *  7. How many paper bags do you need?
+         */
+
+        // Let's code!
+
+        var watermelo = makeFood(1 , 'Watermelon' , 25.90 , 'fruit'  ,   4500);
+        var cheese    = makeFood(2 , 'Cheese'     , 23.90 , 'dairy'  ,   1000);
+        var bread     = makeFood(3 , 'Bread'      ,  4.00 , 'bakery' ,    500);
+        var fish      = makeFood(4 , 'fish'       , 22.80 , 'fish'   ,   1000);
+        var coffee    = makeFood(5 , 'coffee'     , 18.90 , 'coffee' ,    200);
+
+        var shoppingCart = makeShoppingCart();
+
+        shoppingCart.addProduct(watermelo, 1500);
+        shoppingCart.addProduct(cheese, 200);
+        shoppingCart.addProduct(bread, 1000);
+        shoppingCart.addProduct(fish, 600);
+        shoppingCart.addProduct(coffee, 400);
+
+        console.log(shoppingCart.getTotalPrice()); // 72.89
+        console.log(shoppingCart.doIHaveEnoughMoney(80)); // true
+
+        function makeShoppingCart() {
+            var products = [];
+
+            return {
+                addProduct: function(product, weight) {
+                    products.push(makeShoppingCartItem(product, weight));
+                },
+                getTotalPrice: getTotalPrice,
+                doIHaveEnoughMoney: function(money) {
+                    return getTotalPrice() <= money;
+                }
+            };
+
+            function getTotalPrice() {
+                var totalPrice = 0;
+
+                products.forEach(function(item) {
+                    totalPrice += item.getTotalPrice();
+                });
+
+                return totalPrice;
+            }
+        }
+
+        function makeShoppingCartItem(product, weight) {
+            return {
+                product: product,
+                weight: weight,
+                getTotalPrice: function() {
+                    return this.product.getUnitPrice() * weight;
+                }
+            }
+        }
+
+        function makeFood(id, name, price, type, weight) {
+            var _id = id,
+                _name = name,
+                _price = price,
+                _type = type,
+                _weight = weight;
+
+            return {
+                get id() { return _id; },
+                get name() { return _name; },
+                get price() { return _price; },
+                get type() { return _type; },
+                get weight() { return _weight; },
+                getUnitPrice: function () {
+                    return this.price / this.weight;
+                }
+            };
+        }
+    </script>
+</body>
+</html>

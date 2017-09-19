@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Constructor function</title>
+</head>
+<body>
+
+    <script>
+        /**
+         * 1. Please create Car Constructor Function
+         * 2. Please add necessary properties for product with default values (at least 5)
+         * 3. Try to invoke new Car() and Car()
+         * 4. Add method to calculate price (vat)
+         * 5. Please make variables private and add possibility to get them
+         * 6. Please make id, price and name immutable
+         * 7. Add property: lastCalculatedPrice
+         * 8. Extract updating lastCalculatedPrice to another function
+         */
+
+        var Car = function Car(id, make, model, price, color, maxSpeed) {
+            var _price = price;
+            var _id = id;
+            var _make = make;
+            var _model = model;
+            var lastCalculatedPrice;
+
+            this.color = color;
+            this.maxSpeed = maxSpeed;
+
+            this.calculatePrice = function(vat) {
+                var totalPrice = _price * (1 + (vat / 100));
+
+                updateLastCalculatedPrice(totalPrice);
+
+                return totalPrice;
+            };
+
+            this.getPrice = function() { return _price };
+            this.getId = function() { return _id };
+            this.getMake = function() { return _make };
+            this.getModel = function() { return _model };
+            this.getLastCalculatedPrice = function () { return lastCalculatedPrice };
+
+            function updateLastCalculatedPrice(totalPrice) {
+                lastCalculatedPrice = totalPrice;
+            }
+        };
+
+        var carVW1 = new Car(1, 'VW', 'Passat', 2590, 'red', 150);
+        var carVW2 = new Car(1, 'VW', 'Passat', 2590, 'red', 150);
+        var carNissan = new Car(2, 'Nissan', '300ZS', 1190, 'blue', 180);
+
+        // Let's code!
+
+        carVW1.getLastCalculatedPrice(); //  undefined
+        carVW1.calculatePrice(23); //  3185.7
+        carVW1.getLastCalculatedPrice(); // 3185.7
+        carVW1.calculatePrice(3); // 2667.7
+        carVW1.getLastCalculatedPrice(); // 2667.7
+
+        carVW2.getLastCalculatedPrice(); // undefined
+        carNissan.getLastCalculatedPrice(); // undefined
+    </script>
+</body>
+</html>
